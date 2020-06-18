@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         tv = (TextView)findViewById(R.id.textView);
         btn = (Button)findViewById(R.id.button);
         final int color1 = Color.RED;
-        final int color2 = Color.BLACK;
+        final int color2 = Color.BLUE;
         int color;
         final boolean[] flag = {false};
         btn.setOnClickListener(
