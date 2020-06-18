@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btn;
     private EditText text;
     private TextView tv;
+    private boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         final int color1 = Color.RED;
         final int color2 = Color.BLUE;
         int color;
-        final boolean[] flag = {false};
+//        final boolean[] flag = {false};
         btn.setOnClickListener(
                 new View.OnClickListener(){
                     @Override
@@ -44,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
                         Log.i(TAG, "MyClass, onclick ");
                         Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
                         tv.setText(str);
-                        if (flag[0]) {
+                        if (flag) {
                             btn.setBackgroundTintList(ColorStateList.valueOf(color1));
                         } else {
                             btn.setBackgroundTintList(ColorStateList.valueOf(color2));
                             btn.setTextColor(Color.WHITE);
                         }
-                        flag[0] = !flag[0];
+                        flag = !flag;
                     }
 
                 }
