@@ -9,4 +9,9 @@
     <string name="tDDodo">TODO</string>
     <string name="tDodo">TODO</string>
     <string name="_2">2</string>
+    <string name="buttonText">Add Name</string>
+    <string name="linear_ver">Linear ver</string>
+    <string name="frame">Frame</string>
+    <string name="linear_hor">Linear hor</string>
+    <string name="table">Table</string>
 </resources>

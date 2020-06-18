@@ -11,7 +11,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/listViewNames"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -20,11 +31,120 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#7A4E4E"
+                android:gravity="center">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/_1"
+                        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                    <ImageView
+                        android:id="@+id/imageView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/_2"
+                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/_1"
+                        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/_2"
+                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end">
+
+                    <ImageView
+                        android:id="@+id/imageView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/_1"
+                        app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                    <ImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/_2"
+                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                </TableRow>
+
+            </TableLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/table"
+                android:textSize="20sp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#475380">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/frame"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/_1"
+                    app:srcCompat="@drawable/ic_launcher_foreground" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/_2"
+                    app:srcCompat="@drawable/ic_launcher_foreground" />
+            </FrameLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/linear_hor"
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:id="@+id/imageView1"
@@ -46,6 +166,13 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/linear_ver"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/textView"
@@ -70,6 +197,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="60dp"
                     android:text="@string/button" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -93,7 +221,7 @@
             </LinearLayout>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
 <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
