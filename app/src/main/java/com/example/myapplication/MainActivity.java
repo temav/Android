@@ -3,94 +3,72 @@ package com.example.myapplication;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MyActivity";
-    private Button btn;
-    private EditText text;
-    private TextView tv;
-    private String btnText;
+    private Button button;
+    private EditText editText;
+    private TextView textView;
     private int colorRed;
-    private int colorBlue;
-    private boolean flag = false;
-    private ListView list;
-    private List<String> names = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn = (Button)findViewById(R.id.button);
-        btn.setText(R.string.buttonText);
-        colorBlue = getColor(R.color.blueButton);
+        button = (Button) findViewById(R.id.button);
+        editText = (EditText) findViewById(R.id.input);
+        textView = (TextView) findViewById(R.id.textView);
+        button.setText(R.string.buttonText);
+
         colorRed = getColor(R.color.redButton);
-//        btn.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.blueButton)));
         Log.i(TAG, "Create activity");
+
+        editText.addTextChangedListener(myEditListenerOnTextView);
+        editText.addTextChangedListener(myEditListenerOnButton);
         addListenerOnButton();
-        list();
     }
 
-    public void addListenerOnButton () {
-        text = (EditText)findViewById(R.id.input);
-        tv = (TextView)findViewById(R.id.textView);
-        btn = (Button)findViewById(R.id.button);
-//        final int color1 = Color.RED;
-//        final int color2 = Color.BLUE;
-        int color;
-//        final boolean[] flag = {false};
-        btn.setOnClickListener(
+    TextWatcher myEditListenerOnTextView = new TextWatcher() {
+        public void afterTextChanged(Editable s) {
+        }
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+        @Override
+        public void onTextChanged(CharSequence str, int start, int before, int count) {
+            Log.i(TAG, "onTextChanged  for textView: "+str);
+            textView.setText(str);
+        }
+    };
+
+    TextWatcher myEditListenerOnButton = new TextWatcher() {
+        public void afterTextChanged(Editable s) {
+        }
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+        @Override
+        public void onTextChanged(CharSequence str, int start, int before, int count) {
+            Log.i(TAG, "onTextChanged for button: "+str);
+            button.setText(str);
+        }
+    };
+
+    public void addListenerOnButton() {
+        button.setOnClickListener(
                 view -> {
-                    Editable str = text.getText();
-                    names.add(str.toString());
+                    editText.removeTextChangedListener(myEditListenerOnButton);
+                    button.setBackgroundColor(colorRed);
                     Log.i(TAG, "MyClass, onclick button");
-                    Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
-                    tv.setText(str);
-                    if (flag) {
-                        btn.setBackgroundTintList(ColorStateList.valueOf(colorRed));
-                    } else {
-                        btn.setBackgroundTintList(ColorStateList.valueOf(colorBlue));
-                        btn.setTextColor(Color.WHITE);
-                    }
-                    flag = !flag;
                 }
         );
     }
-    public void list () {
-        list = (ListView)findViewById(R.id.listViewNames);
-        names.add("Vova");
-        names.add("Petya");
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.names_layout, names);
-        list.setAdapter(adapter);
-        list.setOnItemClickListener((adapterView, view, i, l) -> {
-            String val = (String)list.getItemAtPosition(i);
-            Log.i(TAG, "OnClick Item");
-            Toast.makeText(MainActivity.this, "Name: " + val, Toast.LENGTH_SHORT).show();
-        });
-    }
-//    public void buttonOnClick(View v) {
-//        EditText text = (EditText)findViewById(R.id.input);
-//        TextView tv = (TextView)findViewById(R.id.textView);
-//        Editable str = text.getText();
-//        tv.setText(str);
-//        Log.i(TAG, "MyClass, onbuttonclick " + str);
-//    }
 }
