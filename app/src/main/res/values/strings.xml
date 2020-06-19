@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">Task text watcher</string>
-    <string name="textview">Try this</string>
-    <string name="bullshit">Bullshit</string>
-    <string name="buttonText">BLM</string>
+    <string name="app_name">Test recyclerView</string>
+    <string name="name"/>
 </resources>
