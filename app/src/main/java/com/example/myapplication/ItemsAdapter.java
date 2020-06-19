@@ -16,8 +16,11 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
     ItemsAdapter(List<Item> itemsss){
     this.items = itemsss;
-}
-
+    }
+    public void setItems(List<Item> items) {
+        this.items = items;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
         return items.size();
