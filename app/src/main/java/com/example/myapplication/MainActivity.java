@@ -65,9 +65,12 @@ public class MainActivity extends AppCompatActivity {
     public void addListenerOnButton() {
         button.setOnClickListener(
                 view -> {
-                    editText.removeTextChangedListener(myEditListenerOnButton);
-                    button.setBackgroundColor(colorRed);
-                    Log.i(TAG, "MyClass, onclick button");
+                    if(button.isClickable()) {
+                        editText.removeTextChangedListener(myEditListenerOnButton);
+                        button.setBackgroundColor(colorRed);
+                        Log.i(TAG, "MyClass, onclick button");
+                        button.setClickable(false);
+                    }
                 }
         );
     }
