@@ -8,15 +8,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
-    private List<Item> items;
-
+    private List<Item> items = Collections.emptyList();
+    ItemsAdapter() {
+    }
     ItemsAdapter(List<Item> itemsss){
     this.items = itemsss;
     }
+
     public void setItems(List<Item> items) {
         this.items = items;
         notifyDataSetChanged();

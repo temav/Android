@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Test recyclerView</string>
-    <string name="name"/>
-    <string name="button">Random</string>
+    <string name="value"/>
+    <string name="buttonGet">GET</string>
+    <string name="buttonSet">SET</string>
+    <string name="buttonClear">Clear</string>
 </resources>

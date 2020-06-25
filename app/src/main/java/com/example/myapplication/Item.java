@@ -2,10 +2,8 @@ package com.example.myapplication;
 
 public class Item {
     String name;
-    double price;
-    Item(String name, double price) {
+    Item(String name) {
         this.name = name;
-        this.price = price;
     }
 }
 
