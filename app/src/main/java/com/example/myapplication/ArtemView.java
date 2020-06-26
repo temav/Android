@@ -29,9 +29,37 @@ public class ArtemView extends LinearLayout implements IArtemView {
     private Button clearButton;
     private Button getButton;
     private Button setButton;
+    private boolean reset;
     private RecyclerView recView;
     private List<Item> items = new ArrayList<>();
     private ItemsAdapter adapter;
+    private TextWatcher textWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                    Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+            value = s.toString();
+//            Item ii = new Item(value);
+            boolean contain = false;
+            for (int i=0; i<items.size();++i)
+                if(items.get(i).name==value)
+                    contain = true;
+            if(!contain) {
+                items.add(new Item(value));
+                adapter.setItems(items);
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
     public ArtemView(Context context) {
         super(context);
         initializeView();
@@ -84,31 +112,7 @@ public class ArtemView extends LinearLayout implements IArtemView {
         recView = findViewById(R.id.rv);
         if (artemEt != null) {
             artemEt.setText(value);
-            artemEt.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                }
-
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                    Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
-                    value = s.toString();
-                    if(items.contains(value)) {
-                        return;
-                    }
-                    if(value.length()==0) {
-                        value = "СБРОС!";
-                    }
-                    items.add(new Item(value));
-                    adapter.setItems(items);
-                }
-
-                @Override
-                public void afterTextChanged(Editable s) {
-
-                }
-            });
+            artemEt.addTextChangedListener(textWatcher);
 
             if (orientation == HORIZONTAL) {
                 setupHorizontalParams(artemEt);
@@ -125,23 +129,28 @@ public class ArtemView extends LinearLayout implements IArtemView {
 
     @Override
     public String getValue() {
-        return value;
+        return artemEt.getText().toString();
     }
 
     @Override
     public void setupValue(@NonNull String value) {
         if (artemEt != null) {
+            artemEt.removeTextChangedListener(textWatcher);
             artemEt.setText(value);
-//            artemEt.removeTextChangedListener();
             items = new ArrayList<>();
             adapter.setItems(items);
+            artemEt.addTextChangedListener(textWatcher);
         }
     }
 
     @Override
     public void clearValue() {
         if (artemEt != null) {
+            artemEt.removeTextChangedListener(textWatcher);
             artemEt.setText("");
+            artemEt.addTextChangedListener(textWatcher);
+            items.add(new Item("СБРОС!"));
+            adapter.setItems(items);
         }
     }
 }
